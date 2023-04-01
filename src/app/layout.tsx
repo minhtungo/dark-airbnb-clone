@@ -1,8 +1,9 @@
 import '@/styles/globals.css';
 
+import { Navbar } from '@/components/navbar';
 import { Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const font = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Airbnb',
@@ -16,7 +17,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <Navbar />
+      <body className={font.className}>{children}</body>
     </html>
   );
 }
