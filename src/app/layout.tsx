@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 
 import { Navbar } from '@/components/navbar';
 import { Inter } from 'next/font/google';
+import { mergeClassNames } from '@/lib/utils';
 
 const font = Inter({ subsets: ['latin'] });
 
@@ -17,8 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <Navbar />
-      <body className={font.className}>{children}</body>
+      <body
+        className={mergeClassNames('bg-black text-gray-100', font.className)}
+      >
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
