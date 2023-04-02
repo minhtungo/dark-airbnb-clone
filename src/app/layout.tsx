@@ -3,6 +3,7 @@ import '@/styles/globals.css';
 import { Navbar } from '@/components/navbar';
 import { Inter } from 'next/font/google';
 import { mergeClassNames } from '@/lib/utils';
+import { Modal } from '@/components/ui';
 
 const font = Inter({ subsets: ['latin'] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body
         className={mergeClassNames('bg-black text-gray-100', font.className)}
       >
+        <Modal title='Hello' isOpen />
         <Navbar />
         {children}
       </body>

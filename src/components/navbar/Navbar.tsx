@@ -1,3 +1,5 @@
+'use client';
+
 import { FC } from 'react';
 import { Container } from '@/components/ui';
 import Logo from './Logo';
