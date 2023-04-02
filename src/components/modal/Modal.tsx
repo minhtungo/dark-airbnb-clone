@@ -129,14 +129,14 @@ const Modal: FC<ModalProps> = ({
               {/*body*/}
               <div className='relative flex-auto p-6'>{body}</div>
               {/*footer*/}
-              <div className='flex flex-col gap-2 p-6'>
+              <div className='flex flex-col gap-1 p-6'>
                 <div
                   className='
                     flex 
                     w-full 
                     flex-row 
                     items-center 
-                    gap-4
+                    gap-3
                   '
                 >
                   {secondaryAction && secondaryActionLabel && (

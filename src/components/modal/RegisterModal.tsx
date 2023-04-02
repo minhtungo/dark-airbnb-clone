@@ -7,6 +7,7 @@ import { FC, useState } from 'react';
 import useRegisterModal from '@/hooks/useRegister';
 import Modal from './Modal';
 import { Button, Heading, Input } from '@/components/ui';
+import { toast } from 'react-hot-toast';
 
 interface RegisterModalProps {}
 
@@ -44,7 +45,7 @@ const RegisterModal: FC<RegisterModalProps> = ({}) => {
 
       onClose();
     } catch (error) {
-      console.log(error);
+      toast.error('Something went wrong! Please try again later.');
     } finally {
       setIsLoading(false);
     }
@@ -82,7 +83,7 @@ const RegisterModal: FC<RegisterModalProps> = ({}) => {
   );
 
   const footerContent = (
-    <div className='mt-3 flex flex-col gap-4'>
+    <div className='mt-3 flex flex-col gap-3'>
       <hr />
       <Button
         outline
@@ -98,10 +99,10 @@ const RegisterModal: FC<RegisterModalProps> = ({}) => {
       />
       <div
         className='
-          mt-4 
+          mt-3 
           text-center 
           font-light 
-          text-neutral-500
+          text-neutral-300
         '
       >
         <p>
@@ -110,7 +111,7 @@ const RegisterModal: FC<RegisterModalProps> = ({}) => {
             // onClick={onToggle}
             className='
               cursor-pointer
-              text-neutral-800 
+              text-neutral-100 
               hover:underline
             '
           >
