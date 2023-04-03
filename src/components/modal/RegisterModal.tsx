@@ -8,6 +8,7 @@ import useRegisterModal from '@/hooks/useRegister';
 import Modal from './Modal';
 import { Button, Heading, Input } from '@/components/ui';
 import { toast } from 'react-hot-toast';
+import { signIn } from 'next-auth/react';
 
 interface RegisterModalProps {}
 
@@ -89,13 +90,13 @@ const RegisterModal: FC<RegisterModalProps> = ({}) => {
         outline
         label='Continue with Google'
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => signIn('google')}
       />
       <Button
         outline
         label='Continue with Github'
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn('github')}
       />
       <div
         className='
