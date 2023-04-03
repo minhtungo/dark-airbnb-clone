@@ -5,7 +5,7 @@ import Modal from './Modal';
 import useRentModal from '@/hooks/useRent';
 import { Heading } from '../ui';
 import { categories } from '@/content/constant';
-import { CategoryInput } from '@/components/input';
+import { CategoryInput, CountrySelect } from '@/components/input';
 import { FieldValues, useForm } from 'react-hook-form';
 
 enum STEPS {
@@ -46,6 +46,7 @@ const RentModal: FC<RentModalProps> = ({}) => {
   });
 
   const category = watch('category');
+  const location = watch('location');
 
   const setCustomValue = (name: string, value: any) => {
     setValue(name, value, {
@@ -99,6 +100,22 @@ const RentModal: FC<RentModalProps> = ({}) => {
     </div>
   );
 
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='Where is your place located?'
+          subtitle='Help guests find you!'
+        />
+        <CountrySelect
+          value={location}
+          onChange={(value) => setCustomValue('location', value)}
+        />
+        {/* <Map center={location?.latlng} /> */}
+      </div>
+    );
+  }
+
   return (
     <Modal
       actionLabel={actionLabel}
@@ -107,7 +124,7 @@ const RentModal: FC<RentModalProps> = ({}) => {
       title='Airbnb your home'
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={rentModal.onClose}
+      onSubmit={onNext}
       body={bodyContent}
     />
   );
