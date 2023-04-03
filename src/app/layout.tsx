@@ -3,7 +3,7 @@ import '@/styles/globals.css';
 import { Navbar } from '@/components/navbar';
 import { Inter } from 'next/font/google';
 import { mergeClassNames } from '@/lib/utils';
-import { RegisterModal } from '@/components/modal';
+import { RegisterModal, LoginModal } from '@/components/modal';
 import ToasterProvider from '@/providers/ToasterProvider';
 
 const font = Inter({ subsets: ['latin'] });
@@ -24,7 +24,8 @@ export default function RootLayout({
         className={mergeClassNames('bg-black text-gray-100', font.className)}
       >
         <ToasterProvider />
-        <RegisterModal title='Hello' isOpen />
+        <LoginModal />
+        <RegisterModal />
         <Navbar />
         {children}
       </body>
