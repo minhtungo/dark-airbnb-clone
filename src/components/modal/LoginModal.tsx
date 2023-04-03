@@ -42,7 +42,7 @@ const LoginModal: FC<RegisterModalProps> = ({}) => {
       setIsLoading(false);
       if (callback?.ok) {
         toast.success('Login successfully!');
-        router.refresh;
+        router.refresh();
         loginModal.onClose();
       }
 
