@@ -1,16 +1,16 @@
 'use client';
 
-import { FC, useCallback, useState } from 'react';
+import { FC, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import Avatar from '../ui/Avatar';
 import MenuItem from './MenuItem';
 import useRegisterModal from '@/hooks/useRegister';
 import useLoginModal from '@/hooks/useLogin';
-import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
+import { SafeUser } from '@/types';
 
 interface UserMenuProps {
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
 
 const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
@@ -19,9 +19,9 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal();
 
   //add typescript to this
-  const toggleOpen = useCallback(() => {
+  const toggleOpen = () => {
     setIsOpen((prev) => !prev);
-  }, []);
+  };
 
   return (
     <div className='relative'>
