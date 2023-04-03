@@ -47,6 +47,7 @@ const CategoryBox: FC<CategoryBoxProps> = ({ icon: Icon, label, selected }) => {
 
   return (
     <div
+      onClick={handleClick}
       className={mergeClassNames(
         'flex cursor-pointer flex-col items-center justify-center gap-2 border-b-2 p-3 transition hover:text-neutral-300',
         selected
