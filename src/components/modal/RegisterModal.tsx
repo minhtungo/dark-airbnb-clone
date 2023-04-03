@@ -9,11 +9,13 @@ import Modal from './Modal';
 import { Button, Heading, Input } from '@/components/ui';
 import { toast } from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
+import useLoginModal from '@/hooks/useLogin';
 
 interface RegisterModalProps {}
 
 const RegisterModal: FC<RegisterModalProps> = ({}) => {
-  const { isOpen, onOpen, onClose } = useRegisterModal();
+  const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -44,12 +46,17 @@ const RegisterModal: FC<RegisterModalProps> = ({}) => {
         throw new Error('Registration failed.');
       }
 
-      onClose();
+      registerModal.onClose();
     } catch (error) {
       toast.error('Something went wrong! Please try again later.');
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const onToggle = () => {
+    registerModal.onClose();
+    loginModal.onOpen();
   };
 
   const bodyContent = (
@@ -109,7 +116,7 @@ const RegisterModal: FC<RegisterModalProps> = ({}) => {
         <p>
           Already have an account?
           <span
-            // onClick={onToggle}
+            onClick={onToggle}
             className='
               cursor-pointer
               text-neutral-100 
@@ -127,10 +134,10 @@ const RegisterModal: FC<RegisterModalProps> = ({}) => {
   return (
     <Modal
       disabled={isLoading}
-      isOpen={isOpen}
+      isOpen={registerModal.isOpen}
       title='Register'
       actionLabel='Continue'
-      onClose={onClose}
+      onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}

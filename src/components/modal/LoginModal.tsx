@@ -52,6 +52,11 @@ const LoginModal: FC<RegisterModalProps> = ({}) => {
     });
   };
 
+  const onToggle = () => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  };
+
   const bodyContent = (
     <div className='flex flex-col gap-4'>
       <Heading title='Welcome back' subtitle='Login to your account' />
@@ -101,7 +106,7 @@ const LoginModal: FC<RegisterModalProps> = ({}) => {
         <p>
           {"Don't have an account? "}
           <span
-            // onClick={onToggle}
+            onClick={onToggle}
             className='
               cursor-pointer
               text-neutral-100 
