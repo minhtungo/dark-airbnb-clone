@@ -17,8 +17,10 @@ interface RegisterModalProps {}
 
 const LoginModal: FC<RegisterModalProps> = ({}) => {
   const router = useRouter();
+
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -114,7 +116,7 @@ const LoginModal: FC<RegisterModalProps> = ({}) => {
             '
           >
             {' '}
-            Sign Up
+            Create an account
           </span>
         </p>
       </div>

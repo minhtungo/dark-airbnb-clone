@@ -3,7 +3,7 @@ import '@/styles/globals.css';
 import { Navbar } from '@/components/navbar';
 import { Inter } from 'next/font/google';
 import { mergeClassNames } from '@/lib/utils';
-import { RegisterModal, LoginModal } from '@/components/modal';
+import { RegisterModal, LoginModal, RentModal } from '@/components/modal';
 import ToasterProvider from '@/providers/ToasterProvider';
 import getCurrentUser from '@/actions/getCurrentUser';
 
@@ -27,6 +27,7 @@ export default async function RootLayout({
       >
         <ToasterProvider />
         <LoginModal />
+        <RentModal />
         <RegisterModal />
         <Navbar currentUser={currentUser} />
         {children}

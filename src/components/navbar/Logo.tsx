@@ -10,6 +10,7 @@ const Logo: FC<LogoProps> = ({}) => {
   const router = useRouter();
   return (
     <Image
+      onClick={() => router.push('/')}
       alt='Logo'
       className='hidden cursor-pointer md:block'
       height='100'
