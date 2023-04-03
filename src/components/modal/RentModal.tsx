@@ -1,12 +1,13 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import Modal from './Modal';
 import useRentModal from '@/hooks/useRent';
-import { Heading } from '../ui';
+import { Heading } from '@/components/ui';
 import { categories } from '@/content/constant';
 import { CategoryInput, CountrySelect } from '@/components/input';
 import { FieldValues, useForm } from 'react-hook-form';
+import dynamic from 'next/dynamic';
 
 enum STEPS {
   CATEGORY = 0,
@@ -47,6 +48,14 @@ const RentModal: FC<RentModalProps> = ({}) => {
 
   const category = watch('category');
   const location = watch('location');
+
+  const Map = useMemo(
+    () =>
+      dynamic(() => import('../ui/Map'), {
+        ssr: false,
+      }),
+    [location]
+  );
 
   const setCustomValue = (name: string, value: any) => {
     setValue(name, value, {
@@ -111,7 +120,7 @@ const RentModal: FC<RentModalProps> = ({}) => {
           value={location}
           onChange={(value) => setCustomValue('location', value)}
         />
-        {/* <Map center={location?.latlng} /> */}
+        <Map center={location?.latlng} />
       </div>
     );
   }
