@@ -32,18 +32,17 @@ const Counter: FC<CounterProps> = ({ title, subtitle, value, onChange }) => {
       <div className='flex flex-row items-center gap-4'>
         <div
           onClick={onSubtract}
-          className='flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-neutral-400 text-neutral-400 transition hover:opacity-80'
+          className='flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-neutral-500 text-neutral-400 transition hover:opacity-80'
         >
           <AiOutlineMinus />
         </div>
-        <div className='text-xl font-light text-neutral-600'>{value}</div>
+        <div className='text-xl font-light text-neutral-300'>{value}</div>
         <div
           onClick={onAdd}
-          className='flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-neutral-400 text-neutral-400 transition hover:opacity-80'
+          className='flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-neutral-500 text-neutral-400 transition hover:opacity-80'
         >
           <AiOutlinePlus />
         </div>
-        <div className='font-medium'>{value}</div>
       </div>
     </div>
   );
