@@ -3,7 +3,7 @@
 import { FC, useMemo, useState } from 'react';
 import Modal from './Modal';
 import useRentModal from '@/hooks/useRent';
-import { Heading } from '@/components/ui';
+import { Heading, Input } from '@/components/ui';
 import { categories } from '@/content/constant';
 import {
   CategoryInput,
@@ -11,8 +11,10 @@ import {
   CountrySelect,
   ImageUpload,
 } from '@/components/input';
-import { FieldValues, useForm } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import dynamic from 'next/dynamic';
+import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 enum STEPS {
   CATEGORY = 0,
@@ -38,7 +40,10 @@ const defaultValues = {
 interface RentModalProps {}
 
 const RentModal: FC<RentModalProps> = ({}) => {
+  const router = useRouter();
   const rentModal = useRentModal();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -82,6 +87,34 @@ const RentModal: FC<RentModalProps> = ({}) => {
 
   const onNext = () => {
     setStep((prev) => prev + 1);
+  };
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    if (step !== STEPS.PRICE) {
+      return onNext();
+    }
+
+    setIsLoading(true);
+
+    const res = await fetch('/api/listings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      toast.error('Something went wrong.');
+      return setIsLoading(false);
+    }
+
+    toast.success('Listing created!');
+    router.refresh();
+    reset();
+    setStep(STEPS.CATEGORY);
+    rentModal.onClose();
+    return setIsLoading(false);
   };
 
   const actionLabel = step === STEPS.PRICE ? 'Create' : 'Next';
@@ -180,6 +213,55 @@ const RentModal: FC<RentModalProps> = ({}) => {
     );
   }
 
+  if (step === STEPS.DESCRIPTION) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='How would you describe your place?'
+          subtitle='Short and sweet works best!'
+        />
+        <Input
+          id='title'
+          label='Title'
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <hr />
+        <Input
+          id='description'
+          label='Description'
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    );
+  }
+
+  if (step === STEPS.PRICE) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='Now, set your price'
+          subtitle='How much do you charge per night?'
+        />
+        <Input
+          id='price'
+          label='Price'
+          formatPrice
+          type='number'
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    );
+  }
+
   return (
     <Modal
       actionLabel={actionLabel}
@@ -188,7 +270,7 @@ const RentModal: FC<RentModalProps> = ({}) => {
       title='Airbnb your home'
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={onNext}
+      onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
     />
   );

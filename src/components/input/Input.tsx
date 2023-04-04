@@ -1,5 +1,6 @@
 'use client';
 
+import { mergeClassNames } from '@/lib/utils';
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 import { BiDollar } from 'react-icons/bi';
 
@@ -43,7 +44,8 @@ const Input: React.FC<InputProps> = ({
         {...register(id, { required })}
         placeholder=' '
         type={type}
-        className={`
+        className={
+          (mergeClassNames(`
           peer
           w-full
           rounded-md
@@ -56,13 +58,16 @@ const Input: React.FC<InputProps> = ({
           transition
           disabled:cursor-not-allowed
           disabled:opacity-70
-          ${formatPrice ? 'pl-9' : 'pl-4'}
-          ${errors[id] ? 'border-rose-500' : 'border-neutral-700'}
-          ${errors[id] ? 'focus:border-rose-500' : 'focus:border-neutral-500'}
-        `}
+        `),
+          formatPrice ? 'pl-9' : 'pl-4',
+          errors[id]
+            ? 'border-rose-500 focus:border-rose-500'
+            : 'border-neutral-700 focus:border-neutral-500')
+        }
       />
       <label
-        className={`
+        className={mergeClassNames(
+          `
           text-md 
           absolute
           top-5 
@@ -71,13 +76,14 @@ const Input: React.FC<InputProps> = ({
           -translate-y-3 
           transform 
           duration-150 
-          ${formatPrice ? 'left-9' : 'left-4'}
           peer-placeholder-shown:translate-y-0 
           peer-placeholder-shown:scale-100 
           peer-focus:-translate-y-4
           peer-focus:scale-75
-          ${errors[id] ? 'text-rose-500' : 'text-zinc-400'}
-        `}
+        `,
+          formatPrice ? 'left-9' : 'left-4',
+          errors[id] ? 'text-rose-500' : 'text-zinc-400'
+        )}
       >
         {label}
       </label>
