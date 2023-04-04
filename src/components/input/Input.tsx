@@ -44,8 +44,8 @@ const Input: React.FC<InputProps> = ({
         {...register(id, { required })}
         placeholder=' '
         type={type}
-        className={
-          (mergeClassNames(`
+        className={mergeClassNames(
+          `
           peer
           w-full
           rounded-md
@@ -58,12 +58,12 @@ const Input: React.FC<InputProps> = ({
           transition
           disabled:cursor-not-allowed
           disabled:opacity-70
-        `),
+        `,
           formatPrice ? 'pl-9' : 'pl-4',
           errors[id]
             ? 'border-rose-500 focus:border-rose-500'
-            : 'border-neutral-700 focus:border-neutral-500')
-        }
+            : 'border-neutral-700 focus:border-neutral-500'
+        )}
       />
       <label
         className={mergeClassNames(
