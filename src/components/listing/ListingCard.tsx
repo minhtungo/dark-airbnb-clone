@@ -1,7 +1,7 @@
 'use client';
 
 import useCountries from '@/hooks/useCountries';
-import { SafeUser } from '@/types';
+import { SafeListing, SafeUser } from '@/types';
 import { Listing, Reservation } from '@prisma/client';
 import { format } from 'date-fns';
 import Image from 'next/image';
@@ -10,7 +10,7 @@ import { FC } from 'react';
 import { Button, HeartButton } from '../ui';
 
 interface ListingCardProps {
-  data: Listing;
+  data: SafeListing;
   reservation?: Reservation;
   onAction?: (id: string) => void;
   disabled?: boolean;
@@ -47,7 +47,7 @@ const ListingCard: FC<ListingCardProps> = ({
 
   const reservationDate = () => {
     if (!reservation) {
-      return null;
+      return 'null';
     }
 
     const start = new Date(reservation.startDate);
