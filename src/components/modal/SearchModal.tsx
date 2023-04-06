@@ -55,7 +55,7 @@ const SearchModal: FC<SearchModalProps> = ({}) => {
 
   const onSubmit = async () => {
     if (step !== STEPS.INFO) {
-      onNext();
+      return onNext();
     }
 
     let currentQuery = {};
