@@ -6,6 +6,7 @@ import { mergeClassNames } from '@/lib/utils';
 import { RegisterModal, LoginModal, RentModal } from '@/components/modal';
 import ToasterProvider from '@/providers/ToasterProvider';
 import getCurrentUser from '@/actions/getCurrentUser';
+import SearchModal from '@/components/modal/SearchModal';
 
 const font = Inter({ subsets: ['latin'] });
 
@@ -28,6 +29,7 @@ export default async function RootLayout({
         <ToasterProvider />
         <LoginModal />
         <RentModal />
+        <SearchModal />
         <RegisterModal />
         <Navbar currentUser={currentUser} />
         <div className='pb-20 pt-28'>{children}</div>

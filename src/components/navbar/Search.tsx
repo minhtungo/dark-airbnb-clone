@@ -17,8 +17,12 @@ const Search: FC<SearchProps> = ({}) => {
   const startDate = params?.get('startDate');
   const endDate = params?.get('endDate');
   const guestCount = params?.get('guestCount');
+
   return (
-    <div className='w-full cursor-pointer rounded-full border border-gray-800/90 py-2 shadow-sm transition hover:shadow-md md:w-auto'>
+    <div
+      onClick={searchModal.onOpen}
+      className='w-full cursor-pointer rounded-full border border-gray-800/90 py-2 shadow-sm transition hover:shadow-md md:w-auto'
+    >
       <div className='flex flex-row items-center justify-between'>
         <div className='px-6 text-sm font-medium'>Anywhere</div>
         <div className='hidden flex-1 border-x px-6 text-center text-sm font-medium sm:block'>
