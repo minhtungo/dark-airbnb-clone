@@ -13,13 +13,17 @@ export async function DELETE(
 ) {
   const currentUser = await getCurrentUser();
 
+  console.log(params);
+
   if (!currentUser) {
     return NextResponse.error();
   }
 
   const { reservationId } = params;
 
-  if (!reservationId || typeof reservationId === 'string') {
+  console.log('reservationId', reservationId);
+
+  if (!reservationId || typeof reservationId !== 'string') {
     throw new Error('Invalid reservation id');
   }
 
