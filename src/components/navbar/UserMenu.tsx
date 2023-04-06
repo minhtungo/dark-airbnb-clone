@@ -65,7 +65,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem onClick={registerModal.onOpen} label='My Favorites' />
                 <MenuItem onClick={rentModal.onOpen} label='Airbnb my home' />
                 <MenuItem
-                  onClick={registerModal.onOpen}
+                  onClick={() => router.push('/reservations')}
                   label='My Reservations'
                 />
                 <hr />

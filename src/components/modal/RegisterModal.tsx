@@ -45,8 +45,9 @@ const RegisterModal: FC<RegisterModalProps> = ({}) => {
       if (!response.ok) {
         throw new Error('Registration failed.');
       }
-
+      toast.success('Registration successful!');
       registerModal.onClose();
+      loginModal.onOpen();
     } catch (error) {
       toast.error('Something went wrong! Please try again later.');
     } finally {
