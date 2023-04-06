@@ -37,13 +37,13 @@ const SearchModal: FC<SearchModalProps> = ({}) => {
     key: 'selection',
   });
 
-  const Map = useMemo(
-    () =>
-      dynamic(() => import('../ui/Map'), {
-        ssr: false,
-      }),
-    [location]
-  );
+  // const Map = useMemo(
+  //   () =>
+  //     dynamic(() => import('../ui/Map'), {
+  //       ssr: false,
+  //     }),
+  //   [location]
+  // );
 
   const onBack = () => {
     setStep((prev) => prev - 1);
@@ -108,7 +108,7 @@ const SearchModal: FC<SearchModalProps> = ({}) => {
         onChange={(value) => setLocation(value as CountrySelectValue)}
       />
       <hr />
-      <Map center={location?.latlng} />
+      {/* <Map center={location?.latlng} /> */}
     </div>
   );
 

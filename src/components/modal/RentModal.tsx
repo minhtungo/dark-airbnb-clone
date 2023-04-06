@@ -63,13 +63,13 @@ const RentModal: FC<RentModalProps> = ({}) => {
   const bathroomCount = watch('bathroomCount');
   const imageSrc = watch('imageSrc');
 
-  const Map = useMemo(
-    () =>
-      dynamic(() => import('../ui/Map'), {
-        ssr: false,
-      }),
-    [location]
-  );
+  // const Map = useMemo(
+  //   () =>
+  //     dynamic(() => import('../ui/Map'), {
+  //       ssr: false,
+  //     }),
+  //   [location]
+  // );
 
   const setCustomValue = (name: string, value: any) => {
     setValue(name, value, {
@@ -162,7 +162,7 @@ const RentModal: FC<RentModalProps> = ({}) => {
           value={location}
           onChange={(value) => setCustomValue('location', value)}
         />
-        <Map center={location?.latlng} />
+        {/* <Map center={location?.latlng} /> */}
       </div>
     );
   }
