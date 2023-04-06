@@ -33,7 +33,7 @@ const RegisterModal: FC<RegisterModalProps> = ({}) => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
 
-    try {
+  try {
       const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
