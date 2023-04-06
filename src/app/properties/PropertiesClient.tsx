@@ -2,7 +2,7 @@
 
 import { ListingCard } from '@/components/listing';
 import { Container, Heading } from '@/components/ui';
-import { SafeListing, Safelisting, SafeUser } from '@/types';
+import { SafeListing, SafeUser } from '@/types';
 import { useRouter } from 'next/navigation';
 import { FC, useState } from 'react';
 import { toast } from 'react-hot-toast';
