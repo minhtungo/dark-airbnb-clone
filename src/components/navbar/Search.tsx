@@ -1,11 +1,22 @@
 'use client';
 
+import useCountries from '@/hooks/useCountries';
+import useSearchModal from '@/hooks/useSearch';
+import { useSearchParams } from 'next/navigation';
 import { FC } from 'react';
 import { BiSearch } from 'react-icons/bi';
 
 interface SearchProps {}
 
 const Search: FC<SearchProps> = ({}) => {
+  const searchModal = useSearchModal();
+  const params = useSearchParams();
+  const { getByValue } = useCountries();
+
+  const locationValue = params?.get('locationValue');
+  const startDate = params?.get('startDate');
+  const endDate = params?.get('endDate');
+  const guestCount = params?.get('guestCount');
   return (
     <div className='w-full cursor-pointer rounded-full border border-gray-800/90 py-2 shadow-sm transition hover:shadow-md md:w-auto'>
       <div className='flex flex-row items-center justify-between'>
